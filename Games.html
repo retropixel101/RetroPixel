@@ -158,10 +158,13 @@
             box-shadow: 0 0 26px rgba(255, 107, 255, 0.45);
         }
 
+        /* REAL IMAGE THUMBNAILS */
         .game-thumb {
             width: 100%;
             height: 130px;
-            background: linear-gradient(135deg, #00f5ff55, #ff6bff55);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             border-radius: 10px;
             margin-bottom: 12px;
         }
@@ -282,31 +285,31 @@
     <section class="games-grid">
 
         <div class="game-card">
-            <div class="game-thumb"></div>
+            <div class="game-thumb" style="background-image: url('PASTE-IMAGE-HERE');"></div>
             <div class="game-title">Slope</div>
             <button class="play-btn" onclick="openPopup('https://example.com/slope')">Play</button>
         </div>
 
         <div class="game-card">
-            <div class="game-thumb"></div>
+            <div class="game-thumb" style="background-image: url('PASTE-IMAGE-HERE');"></div>
             <div class="game-title">1v1.LOL</div>
             <button class="play-btn" onclick="openPopup('https://example.com/1v1')">Play</button>
         </div>
 
         <div class="game-card">
-            <div class="game-thumb"></div>
+            <div class="game-thumb" style="background-image: url('PASTE-IMAGE-HERE');"></div>
             <div class="game-title">Retro Bowl</div>
             <button class="play-btn" onclick="openPopup('https://example.com/retro')">Play</button>
         </div>
 
         <div class="game-card">
-            <div class="game-thumb"></div>
+            <div class="game-thumb" style="background-image: url('PASTE-IMAGE-HERE');"></div>
             <div class="game-title">Drift Hunters</div>
             <button class="play-btn" onclick="openPopup('https://example.com/drift')">Play</button>
         </div>
 
         <div class="game-card">
-            <div class="game-thumb"></div>
+            <div class="game-thumb" style="background-image: url('PASTE-IMAGE-HERE');"></div>
             <div class="game-title">BitLife</div>
             <button class="play-btn" onclick="openPopup('https://example.com/bitlife')">Play</button>
         </div>
@@ -350,7 +353,8 @@
 
         /* A:B versions */
         function openInNewTab_AB() {
-            window.open("about:blank").document.write(`<iframe src="${currentGameURL}" style="border:0;width:100vw;height:100vh;"></iframe>`);
+            const win = window.open("about:blank");
+            win.document.write(`<iframe src="${currentGameURL}" style="border:0;width:100vw;height:100vh;"></iframe>`);
             closePopup();
         }
 
