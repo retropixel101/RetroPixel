@@ -173,6 +173,7 @@
             font-weight: 600;
             text-decoration: none;
             font-size: 0.85rem;
+            cursor: pointer;
             transition: filter 0.15s ease;
         }
 
@@ -208,31 +209,31 @@
         <div class="game-card">
             <div class="game-thumb"></div>
             <div class="game-title">Placeholder Game 1</div>
-            <a class="play-btn" href="#">Play</a>
+            <button class="play-btn" onclick="openGame()">Play</button>
         </div>
 
         <div class="game-card">
             <div class="game-thumb"></div>
             <div class="game-title">Placeholder Game 2</div>
-            <a class="play-btn" href="#">Play</a>
+            <button class="play-btn" onclick="openGame()">Play</button>
         </div>
 
         <div class="game-card">
             <div class="game-thumb"></div>
             <div class="game-title">Placeholder Game 3</div>
-            <a class="play-btn" href="#">Play</a>
+            <button class="play-btn" onclick="openGame()">Play</button>
         </div>
 
         <div class="game-card">
             <div class="game-thumb"></div>
             <div class="game-title">Placeholder Game 4</div>
-            <a class="play-btn" href="#">Play</a>
+            <button class="play-btn" onclick="openGame()">Play</button>
         </div>
 
         <div class="game-card">
             <div class="game-thumb"></div>
             <div class="game-title">Placeholder Game 5</div>
-            <a class="play-btn" href="#">Play</a>
+            <button class="play-btn" onclick="openGame()">Play</button>
         </div>
 
     </section>
@@ -246,6 +247,18 @@
         }
         setInterval(updateClock, 1000);
         updateClock();
+
+        function openGame() {
+            const url = "https://example.com"; // replace with real game link
+            const win = window.open("about:blank", "_blank");
+            win.document.write(`
+                <style>
+                    body { margin:0; background:#000; overflow:hidden; }
+                    iframe { border:0; width:100vw; height:100vh; }
+                </style>
+                <iframe src="${url}"></iframe>
+            `);
+        }
     </script>
 
 </body>
