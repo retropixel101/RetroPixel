@@ -125,6 +125,15 @@
             color: transparent;
         }
 
+        /* Safety text */
+        .safety-note {
+            max-width: 1100px;
+            margin: 0 auto 20px;
+            padding: 0 22px;
+            font-size: 0.8rem;
+            color: #b0b0b0;
+        }
+
         /* Games Grid */
         .games-grid {
             max-width: 1100px;
@@ -203,7 +212,7 @@
             border: 1px solid rgba(255, 120, 255, 0.35);
             padding: 22px;
             border-radius: 12px;
-            width: 280px;
+            width: 300px;
             text-align: center;
             box-shadow: 0 0 25px rgba(255, 120, 255, 0.35);
             position: relative;
@@ -266,36 +275,40 @@
 
     <h1 class="page-title">Games</h1>
 
+    <p class="safety-note">
+        Running inside an about:blank window isolates the game from school monitoring tools and prevents remote control or injected scripts.
+    </p>
+
     <section class="games-grid">
 
         <div class="game-card">
             <div class="game-thumb"></div>
-            <div class="game-title">Nut Simulator</div>
-            <button class="play-btn" onclick="openPopup('https://retropixel101.github.io/Nut-Sim/')">Play</button>
+            <div class="game-title">Slope</div>
+            <button class="play-btn" onclick="openPopup('https://example.com/slope')">Play</button>
         </div>
 
         <div class="game-card">
             <div class="game-thumb"></div>
-            <div class="game-title">Placeholder Game 2</div>
-            <button class="play-btn" onclick="openPopup('https://example.com')">Play</button>
+            <div class="game-title">1v1.LOL</div>
+            <button class="play-btn" onclick="openPopup('https://example.com/1v1')">Play</button>
         </div>
 
         <div class="game-card">
             <div class="game-thumb"></div>
-            <div class="game-title">Placeholder Game 3</div>
-            <button class="play-btn" onclick="openPopup('https://example.com')">Play</button>
+            <div class="game-title">Retro Bowl</div>
+            <button class="play-btn" onclick="openPopup('https://example.com/retro')">Play</button>
         </div>
 
         <div class="game-card">
             <div class="game-thumb"></div>
-            <div class="game-title">Placeholder Game 4</div>
-            <button class="play-btn" onclick="openPopup('https://example.com')">Play</button>
+            <div class="game-title">Drift Hunters</div>
+            <button class="play-btn" onclick="openPopup('https://example.com/drift')">Play</button>
         </div>
 
         <div class="game-card">
             <div class="game-thumb"></div>
-            <div class="game-title">Placeholder Game 5</div>
-            <button class="play-btn" onclick="openPopup('https://example.com')">Play</button>
+            <div class="game-title">BitLife</div>
+            <button class="play-btn" onclick="openPopup('https://example.com/bitlife')">Play</button>
         </div>
 
     </section>
@@ -304,9 +317,13 @@
     <div id="popup">
         <div id="popup-box">
             <div id="popup-close" onclick="closePopup()">✕</div>
-            <h3 style="margin-bottom:10px;">Open Game</h3>
-            <button class="popup-btn" onclick="openInNewTab()">Open in New Tab</button>
-            <button class="popup-btn" onclick="openInNewWindow()">Open in New Window</button>
+            <h3 style="margin-bottom:10px;">Launch Options</h3>
+
+            <button class="popup-btn" onclick="openInNewTab_AB()">Open In New Tab (A:B)</button>
+            <button class="popup-btn" onclick="openInNewWindow_AB()">Open In New Window (A:B)</button>
+
+            <button class="popup-btn" onclick="openInNewTab_NoAB()">Open In New Tab (Not A:B)</button>
+            <button class="popup-btn" onclick="openInNewWindow_NoAB()">Open In New Window (Not A:B)</button>
         </div>
     </div>
 
@@ -331,20 +348,29 @@
             document.getElementById("popup").style.display = "none";
         }
 
-        function openInNewTab() {
+        /* A:B versions */
+        function openInNewTab_AB() {
+            window.open("about:blank").document.write(`<iframe src="${currentGameURL}" style="border:0;width:100vw;height:100vh;"></iframe>`);
+            closePopup();
+        }
+
+        function openInNewWindow_AB() {
+            const win = window.open("", "", "width=1100,height=700,resizable=yes,scrollbars=yes");
+            win.document.write(`
+                <style>body{margin:0;background:#000;}iframe{border:0;width:100vw;height:100vh;}</style>
+                <iframe src="${currentGameURL}"></iframe>
+            `);
+            closePopup();
+        }
+
+        /* Not A:B versions */
+        function openInNewTab_NoAB() {
             window.open(currentGameURL, "_blank");
             closePopup();
         }
 
-        function openInNewWindow() {
-            const win = window.open("", "", "width=1100,height=700,resizable=yes,scrollbars=yes");
-            win.document.write(`
-                <style>
-                    body { margin:0; background:#000; overflow:hidden; }
-                    iframe { border:0; width:100vw; height:100vh; }
-                </style>
-                <iframe src="${currentGameURL}"></iframe>
-            `);
+        function openInNewWindow_NoAB() {
+            window.open(currentGameURL, "", "width=1100,height=700,resizable=yes,scrollbars=yes");
             closePopup();
         }
     </script>
