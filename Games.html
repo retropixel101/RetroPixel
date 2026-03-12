@@ -180,6 +180,56 @@
         .play-btn:hover {
             filter: brightness(1.1);
         }
+
+        /* Popup overlay */
+        #popup {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.65);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+        }
+
+        #popup-box {
+            background: rgba(15, 10, 35, 0.95);
+            border: 1px solid rgba(255, 120, 255, 0.35);
+            padding: 22px;
+            border-radius: 12px;
+            width: 280px;
+            text-align: center;
+            box-shadow: 0 0 25px rgba(255, 120, 255, 0.35);
+            position: relative;
+        }
+
+        #popup-close {
+            position: absolute;
+            top: 6px;
+            right: 10px;
+            font-size: 18px;
+            color: #ff4b4b;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .popup-btn {
+            display: block;
+            width: 100%;
+            margin-top: 12px;
+            padding: 10px;
+            border-radius: 8px;
+            background: linear-gradient(90deg, #00f5ff, #ff6bff);
+            color: #050510;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            font-size: 0.9rem;
+        }
+
+        .popup-btn:hover {
+            filter: brightness(1.1);
+        }
     </style>
 </head>
 <body>
@@ -209,36 +259,48 @@
         <div class="game-card">
             <div class="game-thumb"></div>
             <div class="game-title">Placeholder Game 1</div>
-            <button class="play-btn" onclick="openGame()">Play</button>
+            <button class="play-btn" onclick="openPopup('https://example.com')">Play</button>
         </div>
 
         <div class="game-card">
             <div class="game-thumb"></div>
             <div class="game-title">Placeholder Game 2</div>
-            <button class="play-btn" onclick="openGame()">Play</button>
+            <button class="play-btn" onclick="openPopup('https://example.com')">Play</button>
         </div>
 
         <div class="game-card">
             <div class="game-thumb"></div>
             <div class="game-title">Placeholder Game 3</div>
-            <button class="play-btn" onclick="openGame()">Play</button>
+            <button class="play-btn" onclick="openPopup('https://example.com')">Play</button>
         </div>
 
         <div class="game-card">
             <div class="game-thumb"></div>
             <div class="game-title">Placeholder Game 4</div>
-            <button class="play-btn" onclick="openGame()">Play</button>
+            <button class="play-btn" onclick="openPopup('https://example.com')">Play</button>
         </div>
 
         <div class="game-card">
             <div class="game-thumb"></div>
             <div class="game-title">Placeholder Game 5</div>
-            <button class="play-btn" onclick="openGame()">Play</button>
+            <button class="play-btn" onclick="openPopup('https://example.com')">Play</button>
         </div>
 
     </section>
 
+    <!-- Popup -->
+    <div id="popup">
+        <div id="popup-box">
+            <div id="popup-close" onclick="closePopup()">✕</div>
+            <h3 style="margin-bottom:10px;">Open Game</h3>
+            <button class="popup-btn" onclick="openInNewTab()">Open in New Tab</button>
+            <button class="popup-btn" onclick="openInNewWindow()">Open in New Window</button>
+        </div>
+    </div>
+
     <script>
+        let currentGameURL = "";
+
         function updateClock() {
             const now = new Date();
             const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -248,16 +310,30 @@
         setInterval(updateClock, 1000);
         updateClock();
 
-        function openGame() {
-            const url = "https://example.com"; // replace with real game link
+        function openPopup(url) {
+            currentGameURL = url;
+            document.getElementById("popup").style.display = "flex";
+        }
+
+        function closePopup() {
+            document.getElementById("popup").style.display = "none";
+        }
+
+        function openInNewTab() {
+            window.open(currentGameURL, "_blank");
+            closePopup();
+        }
+
+        function openInNewWindow() {
             const win = window.open("about:blank", "_blank");
             win.document.write(`
                 <style>
                     body { margin:0; background:#000; overflow:hidden; }
                     iframe { border:0; width:100vw; height:100vh; }
                 </style>
-                <iframe src="${url}"></iframe>
+                <iframe src="${currentGameURL}"></iframe>
             `);
+            closePopup();
         }
     </script>
 
