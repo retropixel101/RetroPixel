@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,7 +18,7 @@
             overflow-x: hidden;
         }
 
-        /* Subtle animated grid background */
+        /* Background grid */
         .grid-overlay {
             position: fixed;
             inset: 0;
@@ -41,6 +40,7 @@
             mix-blend-mode: screen;
         }
 
+        /* Header */
         header {
             position: sticky;
             top: 0;
@@ -58,6 +58,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            position: relative;
         }
 
         .logo {
@@ -70,6 +71,17 @@
 
         .logo span {
             color: #ff6bff;
+        }
+
+        /* Center clock */
+        #clock {
+            font-size: 0.9rem;
+            color: #d7d7ff;
+            letter-spacing: 0.05em;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            pointer-events: none;
         }
 
         nav a {
@@ -101,6 +113,7 @@
             width: 100%;
         }
 
+        /* Main content */
         main {
             position: relative;
             z-index: 1;
@@ -156,10 +169,6 @@
             transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
         }
 
-        .primary-link span.icon {
-            font-size: 1.1rem;
-        }
-
         .primary-link:hover {
             transform: translateY(-1px);
             box-shadow: 0 0 26px rgba(255, 107, 255, 0.55);
@@ -180,10 +189,6 @@
             text-align: center;
             color: #cfcfff;
             font-size: 0.9rem;
-        }
-
-        .nav-divider span {
-            opacity: 0.6;
         }
 
         .cards {
@@ -241,6 +246,9 @@
     <header>
         <div class="nav-inner">
             <div class="logo">Retro<span>Nebula</span></div>
+
+            <div id="clock"></div>
+
             <nav>
                 <a href="#">Home</a>
                 <a href="#games">Games</a>
@@ -259,29 +267,31 @@
                 RetroNebula is a sleek unblocked games hub featuring browser‑friendly titles, tools, and more—
                 designed to stay minimal, fast, and clean.
             </p>
-            <!-- Placeholder link to games page -->
+
             <a class="primary-link" href="https://example.com/games">
-                <span class="icon">▶</span>
-                <span>Open Games Page</span>
+                ▶ <span>Open Games Page</span>
             </a>
         </section>
 
         <div class="section-label">Navigation</div>
-        <div class="nav-divider"><span>~~~ Navigation ~~~</span></div>
+        <div class="nav-divider">~~~ Navigation ~~~</div>
 
         <section class="cards" id="games">
             <article class="card">
                 <div class="card-title">Games</div>
                 <div class="card-desc">Browse unblocked classics, arcade hits, and experimental web games.</div>
             </article>
+
             <article class="card" id="tools">
                 <div class="card-title">Tools</div>
                 <div class="card-desc">Quick utilities and widgets to make your session smoother.</div>
             </article>
+
             <article class="card" id="forms">
                 <div class="card-title">Forms</div>
                 <div class="card-desc">Feedback, requests, and suggestion forms all in one place.</div>
             </article>
+
             <article class="card" id="changelog">
                 <div class="card-title">Changelog</div>
                 <div class="card-desc">Track new games, fixes, and visual tweaks as the site evolves.</div>
@@ -289,9 +299,20 @@
         </section>
 
         <p class="placeholder-note">
-            The games link above is a placeholder—swap it with your real games URL when you’re ready.
+            The games link above is a placeholder—replace it with your real games URL anytime.
         </p>
     </main>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            const date = now.toLocaleDateString();
+            document.getElementById("clock").textContent = `${date} • ${time}`;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
+
 </body>
 </html>
-```
