@@ -13,7 +13,7 @@
         body {
             font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
             color: #f5f5ff;
-            background: radial-gradient(circle at top, #2b1b5a 0, #050510 45%, #02030a 100%);
+            background: radial-gradient(circle at top, #24163f 0, #0a0715 45%, #050510 100%);
             min-height: 100vh;
             overflow-x: hidden;
         }
@@ -36,7 +36,7 @@
             font-weight: 900;
             letter-spacing: 0.1em;
             color: white;
-            text-shadow: 0 0 20px #ff00ff, 0 0 40px #00eaff;
+            text-shadow: 0 0 20px #c46bff, 0 0 40px #8f4bff;
             animation: popIn 1.8s ease forwards;
         }
 
@@ -64,56 +64,40 @@
 
         .glow {
             position: absolute;
-            width: 600px;
-            height: 600px;
+            width: 500px;
+            height: 500px;
             border-radius: 50%;
-            filter: blur(180px);
-            opacity: 0.45;
-            animation: drift 18s infinite ease-in-out;
+            filter: blur(200px);
+            opacity: 0.22; /* MUCH softer */
+            animation: drift 22s infinite ease-in-out;
         }
 
         .glow1 {
-            background: #ff00ff;
+            background: #b37bff;
             top: -20%;
             left: -10%;
-            animation-duration: 22s;
         }
 
         .glow2 {
-            background: #00eaff;
+            background: #8a5cff;
             bottom: -25%;
             right: -15%;
-            animation-duration: 26s;
+            animation-duration: 28s;
         }
 
         .glow3 {
-            background: #7b00ff;
+            background: #6d3cff;
             top: 40%;
             left: 60%;
-            animation-duration: 30s;
+            animation-duration: 32s;
         }
 
         @keyframes drift {
             0%   { transform: translate(0px, 0px) scale(1); }
-            25%  { transform: translate(80px, -60px) scale(1.1); }
-            50%  { transform: translate(-60px, 40px) scale(0.9); }
-            75%  { transform: translate(40px, 80px) scale(1.05); }
+            25%  { transform: translate(60px, -40px) scale(1.05); }
+            50%  { transform: translate(-40px, 30px) scale(0.95); }
+            75%  { transform: translate(30px, 60px) scale(1.02); }
             100% { transform: translate(0px, 0px) scale(1); }
-        }
-
-        /* ---------------- MOUSE SPOTLIGHT ---------------- */
-        #mouse-light {
-            position: fixed;
-            width: 350px;
-            height: 350px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(255,255,255,0.18), transparent 70%);
-            filter: blur(80px);
-            pointer-events: none;
-            mix-blend-mode: screen;
-            z-index: -1;
-            opacity: 0.55;
-            transform: translate(-50%, -50%);
         }
 
         /* ---------------- BACKGROUND GRID ---------------- */
@@ -121,10 +105,10 @@
             position: fixed;
             inset: 0;
             background-image:
-                linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
             background-size: 40px 40px;
-            opacity: 0.35;
+            opacity: 0.25;
             pointer-events: none;
             z-index: -3;
         }
@@ -133,8 +117,8 @@
             content: "";
             position: absolute;
             inset: 0;
-            background: radial-gradient(circle at 10% 0, rgba(0, 255, 255, 0.18), transparent 55%),
-                        radial-gradient(circle at 90% 100%, rgba(255, 0, 200, 0.18), transparent 55%);
+            background: radial-gradient(circle at 10% 0, rgba(180, 120, 255, 0.12), transparent 55%),
+                        radial-gradient(circle at 90% 100%, rgba(140, 80, 255, 0.12), transparent 55%);
             mix-blend-mode: screen;
         }
 
@@ -144,9 +128,9 @@
             top: 0;
             z-index: 10;
             backdrop-filter: blur(14px);
-            background: linear-gradient(to right, rgba(5, 5, 20, 0.9), rgba(10, 5, 40, 0.9));
-            border-bottom: 1px solid rgba(180, 120, 255, 0.35);
-            box-shadow: 0 0 25px rgba(120, 80, 255, 0.35);
+            background: linear-gradient(to right, rgba(10, 5, 25, 0.9), rgba(20, 10, 45, 0.9));
+            border-bottom: 1px solid rgba(180, 120, 255, 0.25);
+            box-shadow: 0 0 25px rgba(120, 80, 255, 0.25);
         }
 
         .nav-inner {
@@ -168,7 +152,7 @@
         }
 
         .logo span {
-            color: #ff6bff;
+            color: #d08aff;
         }
 
         /* Center clock */
@@ -199,7 +183,7 @@
             bottom: 0;
             width: 0;
             height: 2px;
-            background: linear-gradient(90deg, #00f5ff, #ff6bff);
+            background: linear-gradient(90deg, #b37bff, #d08aff);
             transition: width 0.2s ease;
         }
 
@@ -232,7 +216,7 @@
         }
 
         .hero-title span {
-            background: linear-gradient(90deg, #00f5ff, #ff6bff);
+            background: linear-gradient(90deg, #b37bff, #d08aff);
             -webkit-background-clip: text;
             color: transparent;
         }
@@ -257,19 +241,19 @@
             padding: 10px 20px;
             border-radius: 999px;
             border: 1px solid rgba(255, 255, 255, 0.18);
-            background: radial-gradient(circle at 0 0, rgba(0, 245, 255, 0.35), transparent 55%),
-                        radial-gradient(circle at 100% 100%, rgba(255, 107, 255, 0.35), transparent 55%);
+            background: radial-gradient(circle at 0 0, rgba(180, 120, 255, 0.25), transparent 55%),
+                        radial-gradient(circle at 100% 100%, rgba(200, 140, 255, 0.25), transparent 55%);
             color: #050510;
             font-weight: 600;
             font-size: 0.95rem;
             text-decoration: none;
-            box-shadow: 0 0 18px rgba(0, 245, 255, 0.35);
+            box-shadow: 0 0 18px rgba(180, 120, 255, 0.25);
             transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
         }
 
         .primary-link:hover {
             transform: translateY(-1px);
-            box-shadow: 0 0 26px rgba(255, 107, 255, 0.55);
+            box-shadow: 0 0 26px rgba(200, 140, 255, 0.45);
             filter: brightness(1.05);
         }
 
@@ -278,7 +262,7 @@
             font-size: 0.85rem;
             letter-spacing: 0.25em;
             text-transform: uppercase;
-            color: #9a8cff;
+            color: #bfa8ff;
             text-align: center;
         }
 
@@ -299,11 +283,11 @@
         .card {
             border-radius: 14px;
             padding: 14px 16px;
-            background: radial-gradient(circle at top left, rgba(0, 245, 255, 0.12), transparent 55%),
-                        radial-gradient(circle at bottom right, rgba(255, 107, 255, 0.12), transparent 55%),
+            background: radial-gradient(circle at top left, rgba(180, 120, 255, 0.12), transparent 55%),
+                        radial-gradient(circle at bottom right, rgba(200, 140, 255, 0.12), transparent 55%),
                         rgba(5, 5, 25, 0.9);
-            border: 1px solid rgba(180, 120, 255, 0.35);
-            box-shadow: 0 0 18px rgba(40, 20, 90, 0.6);
+            border: 1px solid rgba(180, 120, 255, 0.25);
+            box-shadow: 0 0 18px rgba(40, 20, 90, 0.4);
         }
 
         .card-title {
@@ -338,9 +322,6 @@
         <div class="glow glow2"></div>
         <div class="glow glow3"></div>
     </div>
-
-    <!-- MOUSE SPOTLIGHT -->
-    <div id="mouse-light"></div>
 
     <div class="grid-overlay"></div>
 
@@ -414,13 +395,6 @@
         }
         setInterval(updateClock, 1000);
         updateClock();
-
-        /* Mouse spotlight */
-        const mouseLight = document.getElementById("mouse-light");
-        document.addEventListener("mousemove", (e) => {
-            mouseLight.style.left = e.clientX + "px";
-            mouseLight.style.top = e.clientY + "px";
-        });
     </script>
 
 </body>
