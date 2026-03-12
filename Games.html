@@ -73,6 +73,17 @@
             color: #ff6bff;
         }
 
+        /* Center clock */
+        #clock {
+            font-size: 0.9rem;
+            color: #d7d7ff;
+            letter-spacing: 0.05em;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            pointer-events: none;
+        }
+
         nav a {
             margin-left: 20px;
             text-decoration: none;
@@ -178,6 +189,8 @@
         <div class="nav-inner">
             <div class="logo">Retro<span>Nebula</span></div>
 
+            <div id="clock"></div>
+
             <nav>
                 <a href="index.html">Home</a>
                 <a href="games.html">Games</a>
@@ -223,6 +236,17 @@
         </div>
 
     </section>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            const date = now.toLocaleDateString();
+            document.getElementById("clock").textContent = `${date} • ${time}`;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
 
 </body>
 </html>
