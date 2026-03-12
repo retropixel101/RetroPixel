@@ -53,6 +53,69 @@
             100% { opacity: 0; visibility: hidden; }
         }
 
+        /* ---------------- AMBIENT MOVING GLOWS ---------------- */
+        .ambient-lights {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        .glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            filter: blur(180px);
+            opacity: 0.45;
+            animation: drift 18s infinite ease-in-out;
+        }
+
+        .glow1 {
+            background: #ff00ff;
+            top: -20%;
+            left: -10%;
+            animation-duration: 22s;
+        }
+
+        .glow2 {
+            background: #00eaff;
+            bottom: -25%;
+            right: -15%;
+            animation-duration: 26s;
+        }
+
+        .glow3 {
+            background: #7b00ff;
+            top: 40%;
+            left: 60%;
+            animation-duration: 30s;
+        }
+
+        @keyframes drift {
+            0%   { transform: translate(0px, 0px) scale(1); }
+            25%  { transform: translate(80px, -60px) scale(1.1); }
+            50%  { transform: translate(-60px, 40px) scale(0.9); }
+            75%  { transform: translate(40px, 80px) scale(1.05); }
+            100% { transform: translate(0px, 0px) scale(1); }
+        }
+
+        /* ---------------- MOUSE SPOTLIGHT ---------------- */
+        #mouse-light {
+            position: fixed;
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,255,255,0.18), transparent 70%);
+            filter: blur(80px);
+            pointer-events: none;
+            mix-blend-mode: screen;
+            z-index: -1;
+            opacity: 0.55;
+            transform: translate(-50%, -50%);
+        }
+
         /* ---------------- BACKGROUND GRID ---------------- */
         .grid-overlay {
             position: fixed;
@@ -63,7 +126,7 @@
             background-size: 40px 40px;
             opacity: 0.35;
             pointer-events: none;
-            z-index: 0;
+            z-index: -3;
         }
 
         .grid-overlay::before {
@@ -269,6 +332,16 @@
         <div id="loading-text">RETROPIXEL</div>
     </div>
 
+    <!-- AMBIENT GLOWS -->
+    <div class="ambient-lights">
+        <div class="glow glow1"></div>
+        <div class="glow glow2"></div>
+        <div class="glow glow3"></div>
+    </div>
+
+    <!-- MOUSE SPOTLIGHT -->
+    <div id="mouse-light"></div>
+
     <div class="grid-overlay"></div>
 
     <header>
@@ -332,6 +405,7 @@
     </main>
 
     <script>
+        /* Clock */
         function updateClock() {
             const now = new Date();
             const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -340,6 +414,13 @@
         }
         setInterval(updateClock, 1000);
         updateClock();
+
+        /* Mouse spotlight */
+        const mouseLight = document.getElementById("mouse-light");
+        document.addEventListener("mousemove", (e) => {
+            mouseLight.style.left = e.clientX + "px";
+            mouseLight.style.top = e.clientY + "px";
+        });
     </script>
 
 </body>
