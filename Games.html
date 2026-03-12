@@ -190,6 +190,12 @@
             align-items: center;
             justify-content: center;
             z-index: 999;
+            animation: fadeIn 0.25s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         #popup-box {
@@ -201,6 +207,12 @@
             text-align: center;
             box-shadow: 0 0 25px rgba(255, 120, 255, 0.35);
             position: relative;
+            animation: popupIn 0.25s ease forwards;
+        }
+
+        @keyframes popupIn {
+            from { opacity: 0; transform: scale(0.85); }
+            to { opacity: 1; transform: scale(1); }
         }
 
         #popup-close {
@@ -325,7 +337,7 @@
         }
 
         function openInNewWindow() {
-            const win = window.open("about:blank", "_blank");
+            const win = window.open("", "", "width=1100,height=700,resizable=yes,scrollbars=yes");
             win.document.write(`
                 <style>
                     body { margin:0; background:#000; overflow:hidden; }
