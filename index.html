@@ -18,7 +18,42 @@
             overflow-x: hidden;
         }
 
-        /* Background grid */
+        /* ---------------- LOADING SCREEN ---------------- */
+        #loading-screen {
+            position: fixed;
+            inset: 0;
+            background: #050510;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            animation: fadeOut 0.8s ease forwards;
+            animation-delay: 1.8s;
+        }
+
+        #loading-text {
+            font-size: 3rem;
+            font-weight: 900;
+            letter-spacing: 0.1em;
+            color: white;
+            text-shadow: 0 0 20px #ff00ff, 0 0 40px #00eaff;
+            animation: popIn 1.8s ease forwards;
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0.1); opacity: 0; }
+            20% { transform: scale(1.4); opacity: 1; }
+            45% { transform: scale(0.8); }
+            70% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            100% { opacity: 0; visibility: hidden; }
+        }
+
+        /* ---------------- BACKGROUND GRID ---------------- */
         .grid-overlay {
             position: fixed;
             inset: 0;
@@ -40,7 +75,7 @@
             mix-blend-mode: screen;
         }
 
-        /* Header */
+        /* ---------------- HEADER ---------------- */
         header {
             position: sticky;
             top: 0;
@@ -113,7 +148,7 @@
             width: 100%;
         }
 
-        /* Main content */
+        /* ---------------- MAIN CONTENT ---------------- */
         main {
             position: relative;
             z-index: 1;
@@ -225,22 +260,15 @@
             color: #8f8fd0;
             text-align: center;
         }
-
-        @media (max-width: 640px) {
-            .hero-title {
-                font-size: 2.1rem;
-            }
-            .nav-inner {
-                padding-inline: 14px;
-            }
-            nav a {
-                margin-left: 12px;
-                font-size: 0.8rem;
-            }
-        }
     </style>
 </head>
 <body>
+
+    <!-- LOADING SCREEN -->
+    <div id="loading-screen">
+        <div id="loading-text">RETROPIXEL</div>
+    </div>
+
     <div class="grid-overlay"></div>
 
     <header>
