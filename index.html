@@ -13,7 +13,7 @@
         body {
             font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
             color: #f5f5ff;
-            background: radial-gradient(circle at top, #24163f 0, #0a0715 45%, #050510 100%);
+            background: radial-gradient(circle at top, #2b1b5a 0, #050510 45%, #02030a 100%);
             min-height: 100vh;
             overflow-x: hidden;
         }
@@ -36,7 +36,7 @@
             font-weight: 900;
             letter-spacing: 0.1em;
             color: white;
-            text-shadow: 0 0 20px #c46bff, 0 0 40px #8f4bff;
+            text-shadow: 0 0 20px #ff00ff, 0 0 40px #00eaff;
             animation: popIn 1.8s ease forwards;
         }
 
@@ -53,72 +53,25 @@
             100% { opacity: 0; visibility: hidden; }
         }
 
-        /* ---------------- AMBIENT MOVING GLOWS ---------------- */
-        .ambient-lights {
-            position: fixed;
-            inset: 0;
-            overflow: hidden;
-            z-index: -2;
-            pointer-events: none;
-        }
-
-        .glow {
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            border-radius: 50%;
-            filter: blur(200px);
-            opacity: 0.22; /* MUCH softer */
-            animation: drift 22s infinite ease-in-out;
-        }
-
-        .glow1 {
-            background: #b37bff;
-            top: -20%;
-            left: -10%;
-        }
-
-        .glow2 {
-            background: #8a5cff;
-            bottom: -25%;
-            right: -15%;
-            animation-duration: 28s;
-        }
-
-        .glow3 {
-            background: #6d3cff;
-            top: 40%;
-            left: 60%;
-            animation-duration: 32s;
-        }
-
-        @keyframes drift {
-            0%   { transform: translate(0px, 0px) scale(1); }
-            25%  { transform: translate(60px, -40px) scale(1.05); }
-            50%  { transform: translate(-40px, 30px) scale(0.95); }
-            75%  { transform: translate(30px, 60px) scale(1.02); }
-            100% { transform: translate(0px, 0px) scale(1); }
-        }
-
         /* ---------------- BACKGROUND GRID ---------------- */
         .grid-overlay {
             position: fixed;
             inset: 0;
             background-image:
-                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+                linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
             background-size: 40px 40px;
-            opacity: 0.25;
+            opacity: 0.35;
             pointer-events: none;
-            z-index: -3;
+            z-index: 0;
         }
 
         .grid-overlay::before {
             content: "";
             position: absolute;
             inset: 0;
-            background: radial-gradient(circle at 10% 0, rgba(180, 120, 255, 0.12), transparent 55%),
-                        radial-gradient(circle at 90% 100%, rgba(140, 80, 255, 0.12), transparent 55%);
+            background: radial-gradient(circle at 10% 0, rgba(0, 255, 255, 0.18), transparent 55%),
+                        radial-gradient(circle at 90% 100%, rgba(255, 0, 200, 0.18), transparent 55%);
             mix-blend-mode: screen;
         }
 
@@ -128,9 +81,9 @@
             top: 0;
             z-index: 10;
             backdrop-filter: blur(14px);
-            background: linear-gradient(to right, rgba(10, 5, 25, 0.9), rgba(20, 10, 45, 0.9));
-            border-bottom: 1px solid rgba(180, 120, 255, 0.25);
-            box-shadow: 0 0 25px rgba(120, 80, 255, 0.25);
+            background: linear-gradient(to right, rgba(5, 5, 20, 0.9), rgba(10, 5, 40, 0.9));
+            border-bottom: 1px solid rgba(180, 120, 255, 0.35);
+            box-shadow: 0 0 25px rgba(120, 80, 255, 0.35);
         }
 
         .nav-inner {
@@ -152,7 +105,7 @@
         }
 
         .logo span {
-            color: #d08aff;
+            color: #ff6bff;
         }
 
         /* Center clock */
@@ -183,7 +136,7 @@
             bottom: 0;
             width: 0;
             height: 2px;
-            background: linear-gradient(90deg, #b37bff, #d08aff);
+            background: linear-gradient(90deg, #00f5ff, #ff6bff);
             transition: width 0.2s ease;
         }
 
@@ -216,7 +169,7 @@
         }
 
         .hero-title span {
-            background: linear-gradient(90deg, #b37bff, #d08aff);
+            background: linear-gradient(90deg, #00f5ff, #ff6bff);
             -webkit-background-clip: text;
             color: transparent;
         }
@@ -241,19 +194,19 @@
             padding: 10px 20px;
             border-radius: 999px;
             border: 1px solid rgba(255, 255, 255, 0.18);
-            background: radial-gradient(circle at 0 0, rgba(180, 120, 255, 0.25), transparent 55%),
-                        radial-gradient(circle at 100% 100%, rgba(200, 140, 255, 0.25), transparent 55%);
+            background: radial-gradient(circle at 0 0, rgba(0, 245, 255, 0.35), transparent 55%),
+                        radial-gradient(circle at 100% 100%, rgba(255, 107, 255, 0.35), transparent 55%);
             color: #050510;
             font-weight: 600;
             font-size: 0.95rem;
             text-decoration: none;
-            box-shadow: 0 0 18px rgba(180, 120, 255, 0.25);
+            box-shadow: 0 0 18px rgba(0, 245, 255, 0.35);
             transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
         }
 
         .primary-link:hover {
             transform: translateY(-1px);
-            box-shadow: 0 0 26px rgba(200, 140, 255, 0.45);
+            box-shadow: 0 0 26px rgba(255, 107, 255, 0.55);
             filter: brightness(1.05);
         }
 
@@ -262,7 +215,7 @@
             font-size: 0.85rem;
             letter-spacing: 0.25em;
             text-transform: uppercase;
-            color: #bfa8ff;
+            color: #9a8cff;
             text-align: center;
         }
 
@@ -283,11 +236,11 @@
         .card {
             border-radius: 14px;
             padding: 14px 16px;
-            background: radial-gradient(circle at top left, rgba(180, 120, 255, 0.12), transparent 55%),
-                        radial-gradient(circle at bottom right, rgba(200, 140, 255, 0.12), transparent 55%),
+            background: radial-gradient(circle at top left, rgba(0, 245, 255, 0.12), transparent 55%),
+                        radial-gradient(circle at bottom right, rgba(255, 107, 255, 0.12), transparent 55%),
                         rgba(5, 5, 25, 0.9);
-            border: 1px solid rgba(180, 120, 255, 0.25);
-            box-shadow: 0 0 18px rgba(40, 20, 90, 0.4);
+            border: 1px solid rgba(180, 120, 255, 0.35);
+            box-shadow: 0 0 18px rgba(40, 20, 90, 0.6);
         }
 
         .card-title {
@@ -314,13 +267,6 @@
     <!-- LOADING SCREEN -->
     <div id="loading-screen">
         <div id="loading-text">RETROPIXEL</div>
-    </div>
-
-    <!-- AMBIENT GLOWS -->
-    <div class="ambient-lights">
-        <div class="glow glow1"></div>
-        <div class="glow glow2"></div>
-        <div class="glow glow3"></div>
     </div>
 
     <div class="grid-overlay"></div>
@@ -386,7 +332,6 @@
     </main>
 
     <script>
-        /* Clock */
         function updateClock() {
             const now = new Date();
             const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
