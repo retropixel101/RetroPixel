@@ -172,13 +172,12 @@
             margin: 20px auto 80px;
             padding: 0 22px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            grid-template-columns: repeat(auto-fill, 230px);
             gap: 22px;
+            justify-content: flex-start;
         }
 
         .game-card {
-            display: flex;
-            flex-direction: column;
             background: rgba(10, 10, 25, 0.85);
             border: 1px solid rgba(180, 120, 255, 0.35);
             border-radius: 14px;
@@ -311,7 +310,6 @@
 
     <h1 class="page-title">Games</h1>
 
-    <!-- SEARCH BAR -->
     <div class="search-container">
         <input 
             type="text" 
@@ -321,7 +319,6 @@
         >
     </div>
 
-    <!-- NO RESULTS MESSAGE -->
     <div id="noResults">No results found.</div>
 
     <p class="safety-note">
@@ -330,7 +327,6 @@
 
     <section class="games-grid">
 
-        <!-- ALL GAME CARDS (unchanged) -->
         <div class="game-card">
             <div class="game-thumb" style="background-image: url('Images/Slope.png');"></div>
             <div class="game-title">Slope</div>
@@ -399,7 +395,6 @@
 
     </section>
 
-    <!-- POPUP -->
     <div id="popup">
         <div id="popup-box">
             <div id="popup-close" onclick="closePopup()">✕</div>
@@ -459,7 +454,6 @@
             closePopup();
         }
 
-        /* SEARCH FUNCTION */
         function filterGames() {
             const query = document.getElementById("gameSearch").value.toLowerCase();
             const cards = document.querySelectorAll(".game-card");
@@ -469,7 +463,7 @@
                 const title = card.querySelector(".game-title").textContent.toLowerCase();
                 const match = title.includes(query);
 
-                card.style.display = match ? "flex" : "none";
+                card.style.display = match ? "block" : "none";
                 if (match) visibleCount++;
             });
 
@@ -479,4 +473,4 @@
     </script>
 
 </body>
-</html
+</html>
