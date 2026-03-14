@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RetroNebula — Coming Soon</title>
+
+    <style>
+        body {
+            margin: 0;
+            background: #0a0a0f;
+            font-family: 'Segoe UI', sans-serif;
+            color: white;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Top Bar */
+        header {
+            width: 100%;
+            padding: 18px 0;
+            background: rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(6px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 10;
+        }
+
+        .nav-inner {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #ff4fd8;
+        }
+
+        #clock {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.9rem;
+            color: #d7d7ff;
+            letter-spacing: 0.05em;
+            pointer-events: none;
+        }
+
+        nav a {
+            margin-left: 22px;
+            text-decoration: none;
+            color: #d7d7ff;
+            font-size: 15px;
+            transition: 0.2s;
+        }
+
+        nav a:hover {
+            color: white;
+        }
+
+        /* Center Message */
+        .content {
+            margin-top: 140px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .content h1 {
+            font-size: 42px;
+            margin: 0;
+            text-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
+        }
+
+        .emoji {
+            font-size: 80px;
+            margin-top: 25px;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="nav-inner">
+        <div class="logo">Retro<span>Pixel</span></div>
+
+        <div id="clock"></div>
+
+        <nav>
+            <a href="/">Home</a>
+            <a href="/games">Games</a>
+            <a href="/tools">Tools</a>
+            <a href="/forms">Forms</a>
+            <a href="/changelog">Changelog</a>
+        </nav>
+    </div>
+</header>
+
+<div class="content">
+    <h1>Sorry this area isn't finished!</h1>
+    <div class="emoji">⚠️</div>
+</div>
+
+<script>
+function updateClock() {
+    const now = new Date();
+    const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const date = now.toLocaleDateString();
+    document.getElementById("clock").textContent = `${date} • ${time}`;
+}
+setInterval(updateClock, 1000);
+updateClock();
+</script>
+
+</body>
+</html>
