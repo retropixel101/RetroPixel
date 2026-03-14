@@ -14,12 +14,6 @@
             background: radial-gradient(circle at top, #2b1b5a 0, #050510 45%, #02030a 100%);
             min-height: 100vh;
             overflow-x: hidden;
-            animation: fadeIn 0.6s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
         /* GRID OVERLAY */
@@ -175,10 +169,9 @@
             align-items: center;
             justify-content: center;
             z-index: 50;
-            animation: fadeIn 0.3s ease;
         }
 
-        .popup-box {
+        #popup-box {
             position: relative;
             background: rgba(10, 10, 25, 0.95);
             border: 1px solid rgba(180, 120, 255, 0.35);
@@ -187,10 +180,9 @@
             padding: 26px 26px 20px;
             width: 300px;
             text-align: center;
-            animation: fadeIn 0.3s ease;
         }
 
-        .close-x {
+        #popup-close {
             position: absolute;
             top: 10px;
             right: 12px;
@@ -201,13 +193,7 @@
             text-shadow: 0 0 6px rgba(255, 0, 0, 0.6);
         }
 
-        .popup-title {
-            font-size: 1.15rem;
-            font-weight: 700;
-            margin-bottom: 14px;
-        }
-
-        .launch-btn {
+        .popup-btn {
             display: block;
             width: 100%;
             margin-top: 10px;
@@ -221,7 +207,7 @@
             transition: opacity 0.15s ease;
         }
 
-        .launch-btn:hover { opacity: 0.85; }
+        .popup-btn:hover { opacity: 0.85; }
     </style>
 </head>
 
@@ -250,15 +236,7 @@
     <div class="tools-grid">
 
         <!-- ABOUT BLANK OPENER -->
-        <a class="tool-card" onclick="openPopup({
-            title: 'About:Blank Opener',
-            options: [
-                { label: 'Open In New Tab (A:B)', action: () => openAB('aboutblank.html', false) },
-                { label: 'Open In New Window (A:B)', action: () => openAB('aboutblank.html', true) },
-                { label: 'Open In New Tab (Not A:B)', action: () => window.open('aboutblank.html', '_blank') },
-                { label: 'Open In New Window (Not A:B)', action: () => window.open('aboutblank.html') }
-            ]
-        })">
+        <a class="tool-card" onclick="openPopup('aboutblank.html')">
             <div class="tool-title">About:Blank Opener</div>
             <div class="tool-desc">Open any link inside a clean about:blank wrapper.</div>
         </a>
@@ -268,48 +246,20 @@
 
 <!-- POPUP -->
 <div id="popup">
-    <div class="popup-box">
-        <div class="close-x" onclick="closePopup()">✕</div>
-        <div class="popup-title" id="popup-title"></div>
-        <div id="popup-buttons"></div>
+    <div id="popup-box">
+        <div id="popup-close" onclick="closePopup()">✕</div>
+        <h3 style="margin-bottom:10px;">Launch Options</h3>
+
+        <button class="popup-btn" onclick="openInNewTab_AB()">Open In New Tab (A:B)</button>
+        <button class="popup-btn" onclick="openInNewWindow_AB()">Open In New Window (A:B)</button>
+
+        <button class="popup-btn" onclick="openInNewTab_NoAB()">Open In New Tab (Not A:B)</button>
+        <button class="popup-btn" onclick="openInNewWindow_NoAB()">Open In New Window (Not A:B)</button>
     </div>
 </div>
 
 <script>
-let popupData = null;
-
-function openPopup(data) {
-    popupData = data;
-    document.getElementById("popup-title").textContent = data.title;
-
-    const btnContainer = document.getElementById("popup-buttons");
-    btnContainer.innerHTML = "";
-
-    data.options.forEach(opt => {
-        const btn = document.createElement("button");
-        btn.className = "launch-btn";
-        btn.textContent = opt.label;
-
-        // FIX: direct click → window.open works
-        btn.addEventListener("click", () => {
-            closePopup();
-            opt.action();
-        });
-
-        btnContainer.appendChild(btn);
-    });
-
-    document.getElementById("popup").style.display = "flex";
-}
-
-function closePopup() {
-    document.getElementById("popup").style.display = "none";
-}
-
-function openAB(url, newWindow) {
-    const win = newWindow ? window.open("about:blank", "_blank") : window.open("about:blank");
-    win.document.write(`<iframe src="${url}" style="border:none;width:100vw;height:100vh;"></iframe>`);
-}
+let currentGameURL = "";
 
 function updateClock() {
     const now = new Date();
@@ -319,6 +269,40 @@ function updateClock() {
 }
 setInterval(updateClock, 1000);
 updateClock();
+
+function openPopup(url) {
+    currentGameURL = url;
+    document.getElementById("popup").style.display = "flex";
+}
+
+function closePopup() {
+    document.getElementById("popup").style.display = "none";
+}
+
+function openInNewTab_AB() {
+    const win = window.open("about:blank");
+    win.document.write(`<iframe src="${currentGameURL}" style="border:0;width:100vw;height:100vh;"></iframe>`);
+    closePopup();
+}
+
+function openInNewWindow_AB() {
+    const win = window.open("", "", "width=1100,height=700,resizable=yes,scrollbars=yes");
+    win.document.write(`
+        <style>body{margin:0;background:#000;}iframe{border:0;width:100vw;height:100vh;}</style>
+        <iframe src="${currentGameURL}"></iframe>
+    `);
+    closePopup();
+}
+
+function openInNewTab_NoAB() {
+    window.open(currentGameURL, "_blank");
+    closePopup();
+}
+
+function openInNewWindow_NoAB() {
+    window.open(currentGameURL, "", "width=1100,height=700,resizable=yes,scrollbars=yes");
+    closePopup();
+}
 </script>
 
 </body>
