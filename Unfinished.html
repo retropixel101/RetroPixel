@@ -6,71 +6,80 @@
     <title>RetroNebula — Coming Soon</title>
 
     <style>
+        /* --- GLOBAL --- */
         body {
             margin: 0;
-            background: #0a0a0f;
-            font-family: 'Segoe UI', sans-serif;
-            color: white;
+            background: linear-gradient(180deg, #0a0a0f 0%, #050508 100%);
+            font-family: "Segoe UI", sans-serif;
+            color: #e6e6ff;
             height: 100vh;
             display: flex;
             flex-direction: column;
+            overflow: hidden;
         }
 
-        /* Top Bar */
+        /* --- TOP NAV BAR (RetroNebula Accurate) --- */
         header {
             width: 100%;
-            padding: 18px 0;
+            height: 70px;
             background: rgba(0, 0, 0, 0.35);
             backdrop-filter: blur(6px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             position: fixed;
             top: 0;
             left: 0;
-            z-index: 10;
+            z-index: 20;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .nav-inner {
-            width: 90%;
-            max-width: 1200px;
-            margin: auto;
+            width: 92%;
+            max-width: 1250px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             position: relative;
         }
 
+        /* Logo */
         .logo {
-            font-size: 26px;
+            font-size: 28px;
             font-weight: 700;
             letter-spacing: 1px;
+            color: white;
+            user-select: none;
         }
-
         .logo span {
             color: #ff4fd8;
         }
 
+        /* Clock (centered) */
         #clock {
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
             font-size: 0.9rem;
-            color: #d7d7ff;
-            letter-spacing: 0.05em;
+            color: #cfcfff;
+            opacity: 0.85;
             pointer-events: none;
+            user-select: none;
         }
 
+        /* Nav links */
         nav a {
-            margin-left: 22px;
+            margin-left: 26px;
             text-decoration: none;
-            color: #d7d7ff;
+            color: #cfcfff;
             font-size: 15px;
             transition: 0.2s;
         }
-
         nav a:hover {
             color: white;
         }
 
-        /* Center Message */
+        /* --- CENTER MESSAGE --- */
         .content {
             margin-top: 140px;
             flex: 1;
@@ -82,15 +91,17 @@
         }
 
         .content h1 {
-            font-size: 42px;
+            font-size: 46px;
+            font-weight: 700;
             margin: 0;
-            text-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
+            color: white;
+            text-shadow: 0 0 14px rgba(255, 255, 255, 0.35);
         }
 
         .emoji {
-            font-size: 80px;
-            margin-top: 25px;
-            opacity: 0.9;
+            font-size: 90px;
+            margin-top: 30px;
+            opacity: 0.95;
         }
     </style>
 </head>
