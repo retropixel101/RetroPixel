@@ -14,6 +14,12 @@
             background: radial-gradient(circle at top, #2b1b5a 0, #050510 45%, #02030a 100%);
             min-height: 100vh;
             overflow-x: hidden;
+            animation: fadeIn 0.6s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* GRID OVERLAY */
@@ -122,7 +128,7 @@
         /* TOOL CARD */
         .tools-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 20px;
         }
 
@@ -137,7 +143,7 @@
             border: 1px solid rgba(180, 120, 255, 0.35);
             box-shadow: 0 0 18px rgba(40, 20, 90, 0.6);
             border-radius: 14px;
-            padding: 18px 20px;
+            padding: 14px 18px;
             transition: transform 0.15s ease, box-shadow 0.15s ease;
         }
 
@@ -147,14 +153,14 @@
         }
 
         .tool-title {
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 700;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
             color: #ffffff;
         }
 
         .tool-desc {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: #cfcfff;
             line-height: 1.5;
         }
@@ -169,6 +175,7 @@
             align-items: center;
             justify-content: center;
             z-index: 50;
+            animation: fadeIn 0.3s ease;
         }
 
         .popup-box {
@@ -177,12 +184,13 @@
             box-shadow: 0 0 25px rgba(120, 80, 255, 0.45);
             border-radius: 14px;
             padding: 22px 26px;
-            width: 320px;
+            width: 300px;
             text-align: center;
+            animation: fadeIn 0.3s ease;
         }
 
         .popup-title {
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             font-weight: 700;
             margin-bottom: 14px;
         }
@@ -239,9 +247,17 @@
     <div class="tools-grid">
 
         <!-- ABOUT BLANK OPENER -->
-        <a class="tool-card" onclick="openPopup('aboutblank.html')">
+        <a class="tool-card" onclick="openPopup({
+            title: 'About:Blank Opener',
+            options: [
+                { label: 'Open In New Tab (A:B)', action: () => openAB('aboutblank.html', false) },
+                { label: 'Open In New Window (A:B)', action: () => openAB('aboutblank.html', true) },
+                { label: 'Open In New Tab (Direct)', action: () => window.open('aboutblank.html', '_blank') },
+                { label: 'Open In New Window (Direct)', action: () => window.open('aboutblank.html') }
+            ]
+        })">
             <div class="tool-title">About:Blank Opener</div>
-            <div class="tool-desc">Open any link inside a clean about:blank wrapper for privacy and bypassing blockers.</div>
+            <div class="tool-desc">Open any link inside a clean about:blank wrapper.</div>
         </a>
 
     </div>
@@ -251,21 +267,29 @@
 <div id="popup">
     <div class="popup-box">
         <div class="close-x" onclick="closePopup()">✕</div>
-        <div class="popup-title">Launch Options</div>
-
-        <!-- MODULAR BUTTONS -->
-        <button class="launch-btn" id="opt1">Open in New Tab (A:B)</button>
-        <button class="launch-btn" id="opt2">Open in New Window (A:B)</button>
-        <button class="launch-btn" id="opt3">Open in New Tab (Direct)</button>
-        <button class="launch-btn" id="opt4">Open in New Window (Direct)</button>
+        <div class="popup-title" id="popup-title"></div>
+        <div id="popup-buttons"></div>
     </div>
 </div>
 
 <script>
-let currentURL = "";
+let popupData = null;
 
-function openPopup(url) {
-    currentURL = url;
+function openPopup(data) {
+    popupData = data;
+    document.getElementById("popup-title").textContent = data.title;
+
+    const btnContainer = document.getElementById("popup-buttons");
+    btnContainer.innerHTML = "";
+
+    data.options.forEach(opt => {
+        const btn = document.createElement("button");
+        btn.className = "launch-btn";
+        btn.textContent = opt.label;
+        btn.onclick = opt.action;
+        btnContainer.appendChild(btn);
+    });
+
     document.getElementById("popup").style.display = "flex";
 }
 
@@ -277,11 +301,6 @@ function openAB(url, newWindow) {
     const win = newWindow ? window.open("about:blank", "_blank") : window.open("about:blank");
     win.document.write(`<iframe src="${url}" style="border:none;width:100vw;height:100vh;"></iframe>`);
 }
-
-document.getElementById("opt1").onclick = () => openAB(currentURL, false);
-document.getElementById("opt2").onclick = () => openAB(currentURL, true);
-document.getElementById("opt3").onclick = () => window.open(currentURL, "_blank");
-document.getElementById("opt4").onclick = () => window.open(currentURL);
 
 function updateClock() {
     const now = new Date();
