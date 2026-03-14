@@ -196,7 +196,9 @@
             right: 12px;
             font-size: 20px;
             cursor: pointer;
-            color: #fff;
+            color: #ff4d4d;
+            font-weight: 900;
+            text-shadow: 0 0 6px rgba(255, 0, 0, 0.6);
         }
 
         .popup-title {
@@ -287,7 +289,13 @@ function openPopup(data) {
         const btn = document.createElement("button");
         btn.className = "launch-btn";
         btn.textContent = opt.label;
-        btn.onclick = opt.action;
+
+        // FIX: direct click → window.open works
+        btn.addEventListener("click", () => {
+            closePopup();
+            opt.action();
+        });
+
         btnContainer.appendChild(btn);
     });
 
