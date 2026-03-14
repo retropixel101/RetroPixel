@@ -231,11 +231,11 @@
                 RetroPixel is a unblocked games hub featuring user-friendly usage for many things including unblocked games, tools, and a sleek, easy to use interface.
             </p>
 
-            <!-- FIXED BUTTON ROW -->
+            <!-- Button row: aligned bottoms, AB pushed right -->
             <div style="
                 display: flex;
-                gap: 60px;
-                align-items: center;
+                align-items: flex-end;
+                gap: 32px;
                 flex-wrap: wrap;
             ">
 
@@ -244,8 +244,13 @@
                     ▶ <span>Open Games Page</span>
                 </a>
 
-                <!-- About:Blank Launcher -->
-                <div style="display: flex; flex-direction: column; gap: 6px;">
+                <!-- About:Blank Launcher Block -->
+                <div style="
+                    display: flex;
+                    flex-direction: column;
+                    gap: 6px;
+                    margin-left: auto;
+                ">
                     <div style="
                         font-size: 0.8rem;
                         color: #cfcfff;
@@ -259,7 +264,7 @@
                         class="primary-link"
                         style="cursor: pointer;"
                         onclick="launchAB()">
-                        ▲ <span>Launch RetroPixel (A:B)</span>
+                        ⯈ <span>Launch RetroPixel (A:B)</span>
                     </button>
                 </div>
 
