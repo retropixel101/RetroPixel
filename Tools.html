@@ -128,7 +128,7 @@
         /* TOOL CARD */
         .tools-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 20px;
         }
 
@@ -143,7 +143,7 @@
             border: 1px solid rgba(180, 120, 255, 0.35);
             box-shadow: 0 0 18px rgba(40, 20, 90, 0.6);
             border-radius: 14px;
-            padding: 14px 18px;
+            padding: 12px 16px;
             transition: transform 0.15s ease, box-shadow 0.15s ease;
         }
 
@@ -153,14 +153,14 @@
         }
 
         .tool-title {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-weight: 700;
             margin-bottom: 4px;
             color: #ffffff;
         }
 
         .tool-desc {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: #cfcfff;
             line-height: 1.5;
         }
@@ -179,14 +179,24 @@
         }
 
         .popup-box {
+            position: relative;
             background: rgba(10, 10, 25, 0.95);
             border: 1px solid rgba(180, 120, 255, 0.35);
             box-shadow: 0 0 25px rgba(120, 80, 255, 0.45);
             border-radius: 14px;
-            padding: 22px 26px;
+            padding: 26px 26px 20px;
             width: 300px;
             text-align: center;
             animation: fadeIn 0.3s ease;
+        }
+
+        .close-x {
+            position: absolute;
+            top: 10px;
+            right: 12px;
+            font-size: 20px;
+            cursor: pointer;
+            color: #fff;
         }
 
         .popup-title {
@@ -210,15 +220,6 @@
         }
 
         .launch-btn:hover { opacity: 0.85; }
-
-        .close-x {
-            position: absolute;
-            top: 12px;
-            right: 16px;
-            font-size: 20px;
-            cursor: pointer;
-            color: #fff;
-        }
     </style>
 </head>
 
@@ -252,8 +253,8 @@
             options: [
                 { label: 'Open In New Tab (A:B)', action: () => openAB('aboutblank.html', false) },
                 { label: 'Open In New Window (A:B)', action: () => openAB('aboutblank.html', true) },
-                { label: 'Open In New Tab (Direct)', action: () => window.open('aboutblank.html', '_blank') },
-                { label: 'Open In New Window (Direct)', action: () => window.open('aboutblank.html') }
+                { label: 'Open In New Tab (Not A:B)', action: () => window.open('aboutblank.html', '_blank') },
+                { label: 'Open In New Window (Not A:B)', action: () => window.open('aboutblank.html') }
             ]
         })">
             <div class="tool-title">About:Blank Opener</div>
