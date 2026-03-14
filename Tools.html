@@ -6,11 +6,7 @@
     <title>RetroPixel | Tools</title>
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -71,9 +67,7 @@
             color: #ffffff;
         }
 
-        .logo span {
-            color: #ff6bff;
-        }
+        .logo span { color: #ff6bff; }
 
         #clock {
             font-size: 0.9rem;
@@ -98,21 +92,14 @@
         nav a::after {
             content: "";
             position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 0;
-            height: 2px;
+            left: 0; bottom: 0;
+            width: 0; height: 2px;
             background: linear-gradient(90deg, #00f5ff, #ff6bff);
             transition: width 0.2s ease;
         }
 
-        nav a:hover {
-            color: #ffffff;
-        }
-
-        nav a:hover::after {
-            width: 100%;
-        }
+        nav a:hover { color: #ffffff; }
+        nav a:hover::after { width: 100%; }
 
         /* PAGE CONTENT */
         main {
@@ -132,15 +119,18 @@
             text-shadow: 0 0 20px rgba(255, 0, 255, 0.35);
         }
 
-        /* TOOL CARDS */
+        /* TOOL CARD */
         .tools-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 20px;
-            margin-top: 20px;
         }
 
         .tool-card {
+            display: block;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
             background: radial-gradient(circle at top left, rgba(0, 245, 255, 0.12), transparent 55%),
                         radial-gradient(circle at bottom right, rgba(255, 107, 255, 0.12), transparent 55%),
                         rgba(5, 5, 25, 0.9);
@@ -148,6 +138,12 @@
             box-shadow: 0 0 18px rgba(40, 20, 90, 0.6);
             border-radius: 14px;
             padding: 18px 20px;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 26px rgba(255, 107, 255, 0.55);
         }
 
         .tool-title {
@@ -162,72 +158,140 @@
             color: #cfcfff;
             line-height: 1.5;
         }
+
+        /* POPUP */
+        #popup {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.65);
+            backdrop-filter: blur(6px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 50;
+        }
+
+        .popup-box {
+            background: rgba(10, 10, 25, 0.95);
+            border: 1px solid rgba(180, 120, 255, 0.35);
+            box-shadow: 0 0 25px rgba(120, 80, 255, 0.45);
+            border-radius: 14px;
+            padding: 22px 26px;
+            width: 320px;
+            text-align: center;
+        }
+
+        .popup-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 14px;
+        }
+
+        .launch-btn {
+            display: block;
+            width: 100%;
+            margin-top: 10px;
+            padding: 10px 0;
+            border-radius: 8px;
+            background: linear-gradient(90deg, #00f5ff, #ff6bff);
+            color: #000;
+            font-weight: 700;
+            cursor: pointer;
+            border: none;
+            transition: opacity 0.15s ease;
+        }
+
+        .launch-btn:hover { opacity: 0.85; }
+
+        .close-x {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            font-size: 20px;
+            cursor: pointer;
+            color: #fff;
+        }
     </style>
 </head>
 
 <body>
 
-    <div class="grid-overlay"></div>
+<div class="grid-overlay"></div>
 
-    <header>
-        <div class="nav-inner">
-            <div class="logo">Retro<span>Pixel</span></div>
+<header>
+    <div class="nav-inner">
+        <div class="logo">Retro<span>Pixel</span></div>
+        <div id="clock"></div>
 
-            <div id="clock"></div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="Games.html">Games</a>
+            <a href="Tools.html">Tools</a>
+            <a href="Forms.html">Forms</a>
+            <a href="Changelog.html">Changelog</a>
+        </nav>
+    </div>
+</header>
 
-            <nav>
-                <a href="index.html">Home</a>
-                <a href="Games.html">Games</a>
-                <a href="Tools.html">Tools</a>
-                <a href="Forms.html">Forms</a>
-                <a href="Changelog.html">Changelog</a>
-            </nav>
-        </div>
-    </header>
+<main>
+    <div class="page-title">Tools</div>
 
-    <main>
-        <div class="page-title">Tools</div>
+    <div class="tools-grid">
 
-        <div class="tools-grid">
+        <!-- ABOUT BLANK OPENER -->
+        <a class="tool-card" onclick="openPopup('aboutblank.html')">
+            <div class="tool-title">About:Blank Opener</div>
+            <div class="tool-desc">Open any link inside a clean about:blank wrapper for privacy and bypassing blockers.</div>
+        </a>
 
-            <div class="tool-card">
-                <div class="tool-title">About:Blank Opener</div>
-                <div class="tool-desc">Open any link inside a clean about:blank wrapper for privacy and bypassing blockers.</div>
-            </div>
+    </div>
+</main>
 
-            <div class="tool-card">
-                <div class="tool-title">Popup Launcher</div>
-                <div class="tool-desc">Launch URLs in isolated popup windows for distraction-free browsing.</div>
-            </div>
+<!-- POPUP -->
+<div id="popup">
+    <div class="popup-box">
+        <div class="close-x" onclick="closePopup()">✕</div>
+        <div class="popup-title">Launch Options</div>
 
-            <div class="tool-card">
-                <div class="tool-title">Quick Redirect</div>
-                <div class="tool-desc">Instantly redirect to a custom URL using a single click.</div>
-            </div>
+        <!-- MODULAR BUTTONS -->
+        <button class="launch-btn" id="opt1">Open in New Tab (A:B)</button>
+        <button class="launch-btn" id="opt2">Open in New Window (A:B)</button>
+        <button class="launch-btn" id="opt3">Open in New Tab (Direct)</button>
+        <button class="launch-btn" id="opt4">Open in New Window (Direct)</button>
+    </div>
+</div>
 
-            <div class="tool-card">
-                <div class="tool-title">Tab Cloaker</div>
-                <div class="tool-desc">Change your tab title and icon to blend in with school or work tabs.</div>
-            </div>
+<script>
+let currentURL = "";
 
-            <div class="tool-card">
-                <div class="tool-title">Bookmarklet Hub</div>
-                <div class="tool-desc">A collection of useful bookmarklets for quick actions and utilities.</div>
-            </div>
+function openPopup(url) {
+    currentURL = url;
+    document.getElementById("popup").style.display = "flex";
+}
 
-        </div>
-    </main>
+function closePopup() {
+    document.getElementById("popup").style.display = "none";
+}
 
-    <script>
-        function updateClock() {
-            const now = new Date();
-            const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-            const date = now.toLocaleDateString();
-            document.getElementById("clock").textContent = `${date} • ${time}`;
-        }
-        setInterval(updateClock, 1000);
-        updateClock();
-    </script>
+function openAB(url, newWindow) {
+    const win = newWindow ? window.open("about:blank", "_blank") : window.open("about:blank");
+    win.document.write(`<iframe src="${url}" style="border:none;width:100vw;height:100vh;"></iframe>`);
+}
+
+document.getElementById("opt1").onclick = () => openAB(currentURL, false);
+document.getElementById("opt2").onclick = () => openAB(currentURL, true);
+document.getElementById("opt3").onclick = () => window.open(currentURL, "_blank");
+document.getElementById("opt4").onclick = () => window.open(currentURL);
+
+function updateClock() {
+    const now = new Date();
+    const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const date = now.toLocaleDateString();
+    document.getElementById("clock").textContent = `${date} • ${time}`;
+}
+setInterval(updateClock, 1000);
+updateClock();
+</script>
 
 </body>
 </html>
