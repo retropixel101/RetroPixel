@@ -4,6 +4,7 @@
     <link rel="icon" type="image/png" href="Images/Favicon.png">
     <meta charset="UTF-8">
     <title>RetroPixel | Games</title>
+
     <style>
         * {
             margin: 0;
@@ -120,6 +121,31 @@
             background: linear-gradient(90deg, #00f5ff, #ff6bff);
             -webkit-background-clip: text;
             color: transparent;
+        }
+
+        /* SEARCH BAR */
+        .search-container {
+            max-width: 1100px;
+            margin: 0 auto 20px;
+            padding: 0 22px;
+        }
+
+        #gameSearch {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 12px;
+            border: 1px solid rgba(180, 120, 255, 0.35);
+            background: rgba(10, 10, 25, 0.85);
+            color: #fff;
+            font-size: 1rem;
+            box-shadow: 0 0 18px rgba(40, 20, 90, 0.6);
+            outline: none;
+            transition: 0.2s ease;
+        }
+
+        #gameSearch:focus {
+            border-color: #ff6bff;
+            box-shadow: 0 0 25px rgba(255, 107, 255, 0.55);
         }
 
         .safety-note {
@@ -249,6 +275,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <div class="grid-overlay"></div>
@@ -271,12 +298,23 @@
 
     <h1 class="page-title">Games</h1>
 
+    <!-- SEARCH BAR -->
+    <div class="search-container">
+        <input 
+            type="text" 
+            id="gameSearch" 
+            placeholder="Search games..."
+            oninput="filterGames()"
+        >
+    </div>
+
     <p class="safety-note">
         Running inside an about:blank window isolates the game from school monitoring tools and prevents remote control or injected scripts.
     </p>
 
     <section class="games-grid">
 
+        <!-- ALL YOUR GAME CARDS (unchanged) -->
         <div class="game-card">
             <div class="game-thumb" style="background-image: url('Images/Slope.png');"></div>
             <div class="game-title">Slope</div>
@@ -342,9 +380,10 @@
             <div class="game-title">Escape Road</div>
             <button class="play-btn" onclick="openPopup('https://retropixel101.github.io/EscapeRoad/')">Play</button>
         </div>
-        
+
     </section>
 
+    <!-- POPUP -->
     <div id="popup">
         <div id="popup-box">
             <div id="popup-close" onclick="closePopup()">✕</div>
@@ -402,6 +441,17 @@
         function openInNewWindow_NoAB() {
             window.open(currentGameURL, "", "width=1100,height=700,resizable=yes,scrollbars=yes");
             closePopup();
+        }
+
+        /* SEARCH FUNCTION */
+        function filterGames() {
+            const query = document.getElementById("gameSearch").value.toLowerCase();
+            const cards = document.querySelectorAll(".game-card");
+
+            cards.forEach(card => {
+                const title = card.querySelector(".game-title").textContent.toLowerCase();
+                card.style.display = title.includes(query) ? "block" : "none";
+            });
         }
     </script>
 
