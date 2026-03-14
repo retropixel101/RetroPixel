@@ -4,6 +4,7 @@
     <link rel="icon" type="image/png" href="Images/Favicon.png">
     <meta charset="UTF-8">
     <title>RetroPixel | Home</title>
+
     <style>
         * {
             margin: 0;
@@ -19,7 +20,6 @@
             overflow-x: hidden;
         }
 
-        /* ---------------- BACKGROUND GRID ---------------- */
         .grid-overlay {
             position: fixed;
             inset: 0;
@@ -41,7 +41,6 @@
             mix-blend-mode: screen;
         }
 
-        /* ---------------- HEADER ---------------- */
         header {
             position: sticky;
             top: 0;
@@ -74,7 +73,6 @@
             color: #ff6bff;
         }
 
-        /* Center clock */
         #clock {
             font-size: 0.9rem;
             color: #d7d7ff;
@@ -114,7 +112,6 @@
             width: 100%;
         }
 
-        /* ---------------- MAIN CONTENT ---------------- */
         main {
             position: relative;
             z-index: 1;
@@ -219,15 +216,9 @@
             font-size: 0.85rem;
             color: #b8b8ea;
         }
-
-        .placeholder-note {
-            margin-top: 18px;
-            font-size: 0.8rem;
-            color: #8f8fd0;
-            text-align: center;
-        }
     </style>
 </head>
+
 <body>
 
     <div class="grid-overlay"></div>
@@ -253,39 +244,55 @@
             <h1 class="hero-title"><span>RetroPixel</span></h1>
             <p class="hero-sub">Welcome to RetroPixel!</p>
             <p class="hero-text">
-                RetroPixel is a unblocked games hub featuring user-friendly usage for many things including unblocked games, tools, and a sleek, easy to use interface. 
+                RetroPixel is a unblocked games hub featuring user-friendly usage for many things including unblocked games, tools, and a sleek, easy to use interface.
             </p>
 
-            <a class="primary-link" href="Games.html">
-                ▶ <span>Open Games Page</span>
-            </a>
+            <div style="display: flex; gap: 16px; flex-wrap: wrap; align-items: flex-start;">
+
+                <a class="primary-link" href="Games.html">
+                    ▶ <span>Open Games Page</span>
+                </a>
+
+                <div style="display: flex; flex-direction: column; gap: 6px;">
+                    <div style="font-size: 0.8rem; color: #cfcfff; letter-spacing: 0.05em;">
+                        For better experience, launch in About:Blank:
+                    </div>
+
+                    <button 
+                        class="primary-link" 
+                        style="cursor: pointer;"
+                        onclick="launchAB()">
+                        ⬤ <span>Launch RetroPixel (A:B)</span>
+                    </button>
+                </div>
+
+            </div>
         </section>
 
         <div class="section-label">Navigation</div>
         <div class="nav-divider">~~~ Navigation ~~~</div>
 
-        <section class="cards" id="games">
+        <section class="cards">
             <article class="card">
                 <div class="card-title">Games</div>
                 <div class="card-desc">Browse unblocked classics, hit games, and performance friendly games.</div>
             </article>
 
-            <article class="card" id="tools">
+            <article class="card">
                 <div class="card-title">Tools</div>
                 <div class="card-desc">Quick utilities and easy to use sites for ultimatly avoiding site blockers.</div>
             </article>
 
-            <article class="card" id="forms">
+            <article class="card">
                 <div class="card-title">Forms</div>
                 <div class="card-desc">Feedback, requests, and suggestion forms all in one place.</div>
             </article>
 
-            <article class="card" id="changelog">
+            <article class="card">
                 <div class="card-title">Changelog</div>
                 <div class="card-desc">Track new games, fixes, and visual tweaks as the site evolves.</div>
             </article>
         </section>
-
     </main>
 
     <script>
@@ -297,6 +304,14 @@
         }
         setInterval(updateClock, 1000);
         updateClock();
+
+        function launchAB() {
+            const win = window.open("about:blank");
+            win.document.write(`
+                <iframe src="https://retropixel101.github.io/RetroPixel/index.html"
+                        style="border:0;width:100vw;height:100vh;"></iframe>
+            `);
+        }
     </script>
 
 </body>
