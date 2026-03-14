@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="Images/Favicon.png">
+    <meta charset="UTF-8">
+    <title>RetroPixel | About:Blank Opener</title>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            color: #f5f5ff;
+            background: radial-gradient(circle at top, #2b1b5a 0, #050510 45%, #02030a 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* GRID OVERLAY */
+        .grid-overlay {
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.35;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .grid-overlay::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 10% 0, rgba(0, 255, 255, 0.18), transparent 55%),
+                        radial-gradient(circle at 90% 100%, rgba(255, 0, 200, 0.18), transparent 55%);
+            mix-blend-mode: screen;
+        }
+
+        /* HEADER */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            backdrop-filter: blur(14px);
+            background: linear-gradient(to right, rgba(5, 5, 20, 0.9), rgba(10, 5, 40, 0.9));
+            border-bottom: 1px solid rgba(180, 120, 255, 0.35);
+            box-shadow: 0 0 25px rgba(120, 80, 255, 0.35);
+        }
+
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 14px 22px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .logo {
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 1.05rem;
+            color: #ffffff;
+        }
+
+        .logo span { color: #ff6bff; }
+
+        #clock {
+            font-size: 0.9rem;
+            color: #d7d7ff;
+            letter-spacing: 0.05em;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            pointer-events: none;
+        }
+
+        nav a {
+            margin-left: 20px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            color: #d7d7ff;
+            position: relative;
+            padding-bottom: 3px;
+            transition: color 0.2s ease;
+        }
+
+        nav a::after {
+            content: "";
+            position: absolute;
+            left: 0; bottom: 0;
+            width: 0; height: 2px;
+            background: linear-gradient(90deg, #00f5ff, #ff6bff);
+            transition: width 0.2s ease;
+        }
+
+        nav a:hover { color: #ffffff; }
+        nav a:hover::after { width: 100%; }
+
+        /* MAIN CONTENT */
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 120px 22px 80px;
+            position: relative;
+            z-index: 2;
+        }
+
+        h1 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 40px;
+            text-shadow: 0 0 20px rgba(255, 0, 255, 0.35);
+        }
+
+        .section {
+            background: rgba(5, 5, 25, 0.85);
+            border: 1px solid rgba(180, 120, 255, 0.35);
+            border-radius: 14px;
+            padding: 22px;
+            margin-bottom: 40px;
+            box-shadow: 0 0 18px rgba(40, 20, 90, 0.6);
+        }
+
+        .section h2 {
+            font-size: 1.3rem;
+            margin-bottom: 14px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.05);
+            color: #fff;
+            font-size: 0.95rem;
+            margin-bottom: 14px;
+            resize: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+            background: linear-gradient(90deg, #00f5ff, #ff6bff);
+            color: #000;
+            transition: opacity 0.15s ease;
+        }
+
+        button:hover { opacity: 0.85; }
+    </style>
+</head>
+
+<body>
+
+<div class="grid-overlay"></div>
+
+<header>
+    <div class="nav-inner">
+        <div class="logo">Retro<span>Pixel</span></div>
+        <div id="clock"></div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="Games.html">Games</a>
+            <a href="Tools.html">Tools</a>
+            <a href="Forms.html">Forms</a>
+            <a href="Changelog.html">Changelog</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+
+    <h1>About:Blank Opener</h1>
+
+    <!-- URL OPENER -->
+    <div class="section">
+        <h2>Open a Link in About:Blank</h2>
+        <input id="urlInput" placeholder="Enter a URL (https://example.com)">
+        <button onclick="openURL_AB()">Open in About:Blank</button>
+    </div>
+
+    <!-- HTML RUNNER -->
+    <div class="section">
+        <h2>Run Custom HTML in About:Blank</h2>
+        <textarea id="htmlInput" rows="10" placeholder="Enter HTML code here..."></textarea>
+        <button onclick="runHTML_AB()">Run HTML in About:Blank</button>
+    </div>
+
+</main>
+
+<script>
+function updateClock() {
+    const now = new Date();
+    const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const date = now.toLocaleDateString();
+    document.getElementById("clock").textContent = `${date} • ${time}`;
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+/* OPEN URL IN ABOUT:BLANK */
+function openURL_AB() {
+    const url = document.getElementById("urlInput").value.trim();
+    if (!url) return;
+
+    const win = window.open("about:blank");
+    win.document.write(`<iframe src="${url}" style="border:0;width:100vw;height:100vh;"></iframe>`);
+}
+
+/* RUN HTML IN ABOUT:BLANK */
+function runHTML_AB() {
+    const code = document.getElementById("htmlInput").value;
+    const win = window.open("about:blank");
+    win.document.write(code);
+}
+</script>
+
+</body>
+</html>
