@@ -553,69 +553,124 @@
         </div>
     </div>
 
-    <script>
-        let currentGameURL = "";
+   <script>
+    let currentGameURL = "";
 
-        function updateClock() {
-            const now = new Date();
-            const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-            const date = now.toLocaleDateString();
-            document.getElementById("clock").textContent = `${date} • ${time}`;
-        }
-        setInterval(updateClock, 1000);
-        updateClock();
+    function updateClock() {
+        const now = new Date();
+        const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        const date = now.toLocaleDateString();
+        document.getElementById("clock").textContent = `${date} • ${time}`;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
 
-        function openPopup(url) {
-            currentGameURL = url;
-            document.getElementById("popup").style.display = "flex";
-        }
+    function openPopup(url) {
+        currentGameURL = url;
+        document.getElementById("popup").style.display = "flex";
+    }
 
-        function closePopup() {
-            document.getElementById("popup").style.display = "none";
-        }
+    function closePopup() {
+        document.getElementById("popup").style.display = "none";
+    }
 
-        function openInNewTab_AB() {
-            const win = window.open("about:blank");
-            win.document.write(`<iframe src="${currentGameURL}" style="border:0;width:100vw;height:100vh;"></iframe>`);
-            closePopup();
-        }
-
-        function openInNewWindow_AB() {
-            const win = window.open("", "", "width=1100,height=700,resizable=yes,scrollbars=yes");
-            win.document.write(`
-                <style>body{margin:0;background:#000;}iframe{border:0;width:100vw;height:100vh;}</style>
+    function openInNewTab_AB() {
+        const win = window.open("about:blank");
+        win.document.write(`
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <style>
+                    html, body {
+                        margin: 0;
+                        padding: 0;
+                        width: 100%;
+                        height: 100%;
+                        overflow: hidden;
+                        background: #000;
+                    }
+                    iframe {
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 100vw;
+                        height: 100vh;
+                        border: none;
+                        background: #000;
+                        display: block;
+                    }
+                </style>
+            </head>
+            <body>
                 <iframe src="${currentGameURL}"></iframe>
-            `);
-            closePopup();
-        }
+            </body>
+            </html>
+        `);
+        closePopup();
+    }
 
-        function openInNewTab_NoAB() {
-            window.open(currentGameURL, "_blank");
-            closePopup();
-        }
+    function openInNewWindow_AB() {
+        const win = window.open("", "", "width=1100,height=700,resizable=yes,scrollbars=yes");
+        win.document.write(`
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <style>
+                    html, body {
+                        margin: 0;
+                        padding: 0;
+                        width: 100%;
+                        height: 100%;
+                        overflow: hidden;
+                        background: #000;
+                    }
+                    iframe {
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 100vw;
+                        height: 100vh;
+                        border: none;
+                        background: #000;
+                        display: block;
+                    }
+                </style>
+            </head>
+            <body>
+                <iframe src="${currentGameURL}"></iframe>
+            </body>
+            </html>
+        `);
+        closePopup();
+    }
 
-        function openInNewWindow_NoAB() {
-            window.open(currentGameURL, "", "width=1100,height=700,resizable=yes,scrollbars=yes");
-            closePopup();
-        }
+    function openInNewTab_NoAB() {
+        window.open(currentGameURL, "_blank");
+        closePopup();
+    }
 
-        function filterGames() {
-            const query = document.getElementById("gameSearch").value.toLowerCase();
-            const cards = document.querySelectorAll(".game-card");
-            let visibleCount = 0;
+    function openInNewWindow_NoAB() {
+        window.open(currentGameURL, "", "width=1100,height=700,resizable=yes,scrollbars=yes");
+        closePopup();
+    }
 
-            cards.forEach(card => {
-                const title = card.querySelector(".game-title").textContent.toLowerCase();
-                const match = title.includes(query);
+    function filterGames() {
+        const query = document.getElementById("gameSearch").value.toLowerCase();
+        const cards = document.querySelectorAll(".game-card");
+        let visibleCount = 0;
 
-                card.style.display = match ? "block" : "none";
-                if (match) visibleCount++;
-            });
+        cards.forEach(card => {
+            const title = card.querySelector(".game-title").textContent.toLowerCase();
+            const match = title.includes(query);
+            card.style.display = match ? "block" : "none";
+            if (match) visibleCount++;
+        });
 
-            document.getElementById("noResults").style.display =
-                visibleCount === 0 ? "block" : "none";
-        }
-    </script>
+        document.getElementById("noResults").style.display =
+            visibleCount === 0 ? "block" : "none";
+    }
+</script>
+
 
 </body>
 </html>
