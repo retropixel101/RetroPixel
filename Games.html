@@ -6,6 +6,53 @@
     <title>RetroPixel | Games</title>
 
     <style>
+        /* Locked card state */
+.game-card.locked {
+    position: relative;
+    opacity: 0.55;
+    pointer-events: none; /* fully disables clicking */
+    filter: grayscale(100%);
+}
+
+/* Dark overlay */
+.game-card.locked .lock-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.65);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+    border-radius: inherit;
+}
+
+/* Lock icon */
+.lock-icon {
+    font-size: 42px;
+    margin-bottom: 6px;
+    opacity: 0.9;
+}
+
+/* Under Construction text */
+.lock-text {
+    font-size: 16px;
+    font-weight: 600;
+    color: #ff4d4d;
+    text-shadow: 0 0 6px #ff0000;
+}
+
+/* Disabled button */
+.game-card.locked .play-btn {
+    background: #333;
+    cursor: not-allowed;
+    border: 1px solid #555;
+}
+
         * {
             margin: 0;
             padding: 0;
@@ -327,11 +374,17 @@
 
     <section class="games-grid">
 
-        <div class="game-card">
-            <div class="game-thumb" style="background-image: url('Images/Slope.png');"></div>
-            <div class="game-title">Slope</div>
-            <button class="play-btn" onclick="openPopup('https://retropixel101.github.io/RetroPixel/Games/Slope.html')">Play</button>
-        </div>
+       <div class="game-card locked">
+    <div class="game-thumb" style="background-image: url('Images/Slope.png');"></div>
+
+    <div class="lock-overlay">
+        <div class="lock-icon">🔒</div>
+        <div class="lock-text">Under Construction</div>
+    </div>
+
+    <div class="game-title">Slope</div>
+    <button class="play-btn" disabled>Unavailable</button>
+</div>
 
         <div class="game-card">
             <div class="game-thumb" style="background-image: url('Images/1v1.png');"></div>
@@ -376,171 +429,147 @@
         </div>
 
         <div class="game-card">
-            <div class="game-thumb" style="background-image: url('Images/Baldiplus.png');"></div>
-            <div class="game-title">Baldi's Basics Plus</div>
-            <button class="play-btn" onclick="openPopup('https://retropixel101.github.io/Baldi-basics-plus/')">Play</button>
-        </div>
-
-        <div class="game-card">
             <div class="game-thumb" style="background-image: url('Images/baldirem.png');"></div>
             <div class="game-title">Baldi's Basics Classic Remastered</div>
-            <button class="play-btn" onclick="openPopup('https://retropixel101.github.io/Baldieclassicremasterd/')">Play</button>
+            <button class="play-btn" onclick="openPopup('https://retropixel101.github.io/RetroPixel/Games/BaldiRemaster.html')">Play</button>
         </div>
 
         <div class="game-card">
             <div class="game-thumb" style="background-image: url('Images/Granny.png');"></div>
             <div class="game-title">Granny</div>
-            <button class="play-btn" onclick="openPopup('https://retropixel101.github.io/granny1/')">Play</button>
+            <button class="play-btn" onclick="openPopup('https://retropixel101.github.io/RetroPixel/Games/Granny.html')">Play</button>
         </div>
 
         <div class="game-card">
             <div class="game-thumb" style="background-image: url('Images/granny2.png');"></div>
             <div class="game-title">Granny 2</div>
-            <button class="play-btn" onclick="openPopup('https://retropixel101.github.io/granny-2/')">Play</button>
+            <button class="play-btn" onclick="openPopup('https://retropixel101.github.io/RetroPixel/Games/Granny2.html')">Play</button>
         </div>
 
         <div class="game-card">
             <div class="game-thumb" style="background-image: url('Images/blockblast.png');"></div>
             <div class="game-title">Block Blast</div>
-            <button class="play-btn" onclick="openPopup('https://retropixel101.github.io/BlockBlast/')">Play</button>
+            <button class="play-btn" onclick="openPopup('https://retropixel101.github.io/RetroPixel/Games/BlockBlast.html')">Play</button>
         </div>
 
         <div class="game-card">
             <div class="game-thumb" style="background-image: url('Images/escaperoad.png');"></div>
             <div class="game-title">Escape Road</div>
-            <button class="play-btn" onclick="openPopup('https://retropixel101.github.io/EscapeRoad/')">Play</button>
+            <button class="play-btn" onclick="openPopup('https://retropixel101.github.io/RetroPixel/Games/EscapeRoad.html')">Play</button>
         </div>
 
         <div class="game-card">
             <div class="game-thumb" style="background-image: url('Images/kindergarten1.png');"></div>
             <div class="game-title">Kindergarten</div>
-            <button class="play-btn" onclick="openPopup('https://retropixel101.github.io/Kindergarten-1/')">Play</button>
+            <button class="play-btn" onclick="openPopup('https://retropixel101.github.io/RetroPixel/Games/Kindergarten.html')">Play</button>
         </div>
 
         <div class="game-card">
             <div class="game-thumb" style="background-image: url('Images/kindergarten2.png');"></div>
             <div class="game-title">Kindergarten 2</div>
-            <button class="play-btn" onclick="openPopup('https://retropixel101.github.io/Kindergarten-2/')">Play</button>
+            <button class="play-btn" onclick="openPopup('https://retropixel101.github.io/RetroPixel/Games/Kindergarten2.html')">Play</button>
         </div>
 
         <div class="game-card">
             <div class="game-thumb" style="background-image: url('Images/kindergarten3.png');"></div>
             <div class="game-title">Kindergarten 3</div>
-            <button class="play-btn" onclick="openPopup('https://retropixel101.github.io/Kindergarten-3/')">Play</button>
-        </div>
-
-         <div class="game-card">
-            <div class="game-thumb" style="background-image: url('Images/nut.png');"></div>
-            <div class="game-title">Nut Simulator</div>
-            <button class="play-btn" onclick="openPopup('https://retropixel101.github.io/Nut-Sim/')">Play</button>
+            <button class="play-btn" onclick="openPopup('https://retropixel101.github.io/RetroPixel/Games/Kindergarten3.html')">Play</button>
         </div>
 
         <div class="game-card">
             <div class="game-thumb" style="background-image: url('Images/Ironlung.png');"></div>
             <div class="game-title">IRON LUNG</div>
-            <button class="play-btn" onclick="openPopup('https://retropixel101.github.io/iron-lung/')">Play</button>
+            <button class="play-btn" onclick="openPopup('https://retropixel101.github.io/RetroPixel/Games/IRONLUNG.html')">Play</button>
         </div>
 
         <div class="game-card">
             <div class="game-thumb" style="background-image: url('Images/crazycattle.png');"></div>
             <div class="game-title">Crazy Cattle 3D</div>
-            <button class="play-btn" onclick="openPopup('https://retropixel101.github.io/CrazyCattle3D/')">Play</button>
+            <button class="play-btn" onclick="openPopup('https://retropixel101.github.io/RetroPixel/Games/CrazyCattle.html')">Play</button>
         </div>
 
          <div class="game-card">
             <div class="game-thumb" style="background-image: url('Images/crazykitty.png');"></div>
             <div class="game-title">Crazy Kitty 3D</div>
-            <button class="play-btn" onclick="openPopup('https://retropixel101.github.io/CrazyKitty3D/')">Play</button>
+            <button class="play-btn" onclick="openPopup('https://retropixel101.github.io/RetroPixel/Games/CrazyKitty.html')">Play</button>
         </div>
 
          <div class="game-card">
             <div class="game-thumb" style="background-image: url('Images/crazychicken3d.png');"></div>
             <div class="game-title">Crazy Chicken 3D</div>
-            <button class="play-btn" onclick="openPopup('https://retropixel101.github.io/CrazyChicken3D/')">Play</button>
+            <button class="play-btn" onclick="openPopup('https://retropixel101.github.io/RetroPixel/Games/CrazyChicken.html')">Play</button>
         </div>
-
-        <div class="game-card">
-            <div class="game-thumb" style="background-image: url('Images/slimerancher.png');"></div>
-            <div class="game-title">Slime Ranchers</div>
-            <button class="play-btn" onclick="openPopup('https://retropixel101.github.io/slime-ranchers/')">Play</button>
-        </div>
-
-        <div class="game-card">
-            <div class="game-thumb" style="background-image: url('Images/bendyandtheink.png');"></div>
-            <div class="game-title">Bendy and the Ink Machine</div>
-            <button class="play-btn" onclick="openPopup('https://retropixel101.github.io/bendy-and-the-ink-machine/')">Play</button>
-        </div>
-
+        
         <div class="game-card">
             <div class="game-thumb" style="background-image: url('Images/fnaf1.png');"></div>
             <div class="game-title">Five Nights at Freddy's</div>
-            <button class="play-btn" onclick="openPopup('https://retropixel101.github.io/fnaf1/')">Play</button>
+            <button class="play-btn" onclick="openPopup('https://retropixel101.github.io/RetroPixel/Games/FNAF1.html')">Play</button>
         </div>
 
          <div class="game-card">
             <div class="game-thumb" style="background-image: url('Images/fnaf2.png');"></div>
             <div class="game-title">Five Nights at Freddy's 2</div>
-            <button class="play-btn" onclick="openPopup('https://retropixel101.github.io/fnaf2/')">Play</button>
+            <button class="play-btn" onclick="openPopup('https://retropixel101.github.io/RetroPixel/Games/FNAF2.html')">Play</button>
         </div>
 
         <div class="game-card">
             <div class="game-thumb" style="background-image: url('Images/fnaf3.png');"></div>
             <div class="game-title">Five Nights at Freddy's 3</div>
-            <button class="play-btn" onclick="openPopup('https://retropixel101.github.io/fnaf3/')">Play</button>
+            <button class="play-btn" onclick="openPopup('https://retropixel101.github.io/RetroPixel/Games/FNAF3.html')">Play</button>
         </div>
 
         <div class="game-card">
             <div class="game-thumb" style="background-image: url('Images/fnaf4.png');"></div>
             <div class="game-title">Five Nights at Freddy's 4</div>
-            <button class="play-btn" onclick="openPopup('https://retropixel101.github.io/fnaf4/')">Play</button>
+            <button class="play-btn" onclick="openPopup('https://retropixel101.github.io/RetroPixel/Games/FNAF4.html')">Play</button>
         </div>
 
         <div class="game-card">
             <div class="game-thumb" style="background-image: url('Images/fnafsl.png');"></div>
             <div class="game-title">Five Nights at Freddy's: Sister Location</div>
-            <button class="play-btn" onclick="openPopup('https://retropixel101.github.io/fnaf-sl/')">Play</button>
+            <button class="play-btn" onclick="openPopup('https://retropixel101.github.io/RetroPixel/Games/FNAFSL.html')">Play</button>
         </div>
 
           <div class="game-card">
             <div class="game-thumb" style="background-image: url('Images/fnafworld.png');"></div>
             <div class="game-title">FNaF World</div>
-            <button class="play-btn" onclick="openPopup('https://retropixel101.github.io/fnaf-world/')">Play</button>
+            <button class="play-btn" onclick="openPopup('https://retropixel101.github.io/RetroPixel/Games/FNAFWRLD.html')">Play</button>
         </div>
 
         <div class="game-card">
             <div class="game-thumb" style="background-image: url('Images/fnafpizza.png');"></div>
             <div class="game-title">Freddy Fazbear's Pizzeria Simulator</div>
-            <button class="play-btn" onclick="openPopup('https://retropixel101.github.io/fnaf-pizza-sim/')">Play</button>
+            <button class="play-btn" onclick="openPopup('https://retropixel101.github.io/RetroPixel/Games/FNAFPIZZA.html')">Play</button>
         </div>
 
          <div class="game-card">
             <div class="game-thumb" style="background-image: url('Images/fnafucn.png');"></div>
             <div class="game-title">Ultimate Custom Night</div>
-            <button class="play-btn" onclick="openPopup('https://retropixel101.github.io/fnaf-ucn/')">Play</button>
+            <button class="play-btn" onclick="openPopup('https://retropixel101.github.io/RetroPixel/Games/FNAFUCN.html')">Play</button>
         </div>
 
         <div class="game-card">
             <div class="game-thumb" style="background-image: url('Images/chess.png');"></div>
             <div class="game-title">Chess</div>
-            <button class="play-btn" onclick="openPopup('https://retropixel101.github.io/chess/')">Play</button>
+            <button class="play-btn" onclick="openPopup('https://retropixel101.github.io/RetroPixel/Games/Chess.html')">Play</button>
         </div>
 
         <div class="game-card">
             <div class="game-thumb" style="background-image: url('Images/epstienbasics.png');"></div>
             <div class="game-title">Jeffrey Epstein Basics In Education And Kidnapping</div>
-            <button class="play-btn" onclick="openPopup('https://retropixel101.github.io/Jeffery-basics/')">Play</button>
+            <button class="play-btn" onclick="openPopup('https://retropixel101.github.io/RetroPixel/Games/Jeffbasics.html')">Play</button>
         </div>
 
         <div class="game-card">
             <div class="game-thumb" style="background-image: url('Images/fnafe.png');"></div>
             <div class="game-title">Five Nights at Epstein's</div>
-            <button class="play-btn" onclick="openPopup('https://retropixel101.github.io/Five-nights-at-epst-ns/')">Play</button>
+            <button class="play-btn" onclick="openPopup('https://retropixel101.github.io/RetroPixel/Games/FNAE.html')">Play</button>
         </div>
 
         <div class="game-card">
             <div class="game-thumb" style="background-image: url('Images/Minecraft.png');"></div>
             <div class="game-title">Minecraft 1.12.2</div>
-            <button class="play-btn" onclick="openPopup('https://retropixel101.github.io/minecraft-1.12.2/')">Play</button>
+            <button class="play-btn" onclick="openPopup('https://retropixel101.github.io/RetroPixel/Games/Minecraft1122.html')">Play</button>
         </div>
 
           <div class="game-card">
