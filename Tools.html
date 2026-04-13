@@ -16,7 +16,6 @@
             overflow-x: hidden;
         }
 
-        /* GRID OVERLAY */
         .grid-overlay {
             position: fixed;
             inset: 0;
@@ -38,7 +37,6 @@
             mix-blend-mode: screen;
         }
 
-        /* HEADER */
         header {
             position: sticky;
             top: 0;
@@ -101,7 +99,6 @@
         nav a:hover { color: #ffffff; }
         nav a:hover::after { width: 100%; }
 
-        /* PAGE CONTENT */
         main {
             position: relative;
             z-index: 2;
@@ -119,7 +116,6 @@
             text-shadow: 0 0 20px rgba(255, 0, 255, 0.35);
         }
 
-        /* TOOL CARD */
         .tools-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -159,7 +155,6 @@
             line-height: 1.5;
         }
 
-        /* POPUP */
         #popup {
             position: fixed;
             inset: 0;
@@ -235,7 +230,6 @@
 
     <div class="tools-grid">
 
-        <!-- ABOUT BLANK OPENER -->
         <a class="tool-card" onclick="openPopup('https://retropixel101.github.io/AI/')">
             <div class="tool-title">AI</div>
             <div class="tool-desc">AI Assistant for help.</div>
@@ -246,11 +240,9 @@
             <div class="tool-desc">Open any link inside a clean about:blank wrapper.</div>
         </a>
 
-
     </div>
 </main>
 
-<!-- POPUP -->
 <div id="popup">
     <div id="popup-box">
         <div id="popup-close" onclick="closePopup()">✕</div>
@@ -285,18 +277,81 @@ function closePopup() {
     document.getElementById("popup").style.display = "none";
 }
 
+/* -------------------------------
+   PERFECT FULLSCREEN ABOUT:BLANK
+   ------------------------------- */
+
 function openInNewTab_AB() {
     const win = window.open("about:blank");
-    win.document.write(`<iframe src="${currentGameURL}" style="border:0;width:100vw;height:100vh;"></iframe>`);
+
+    win.document.write(`
+        <html>
+        <head>
+            <style>
+                html, body {
+                    margin: 0;
+                    padding: 0;
+                    width: 100%;
+                    height: 100%;
+                    overflow: hidden;
+                    background: #000;
+                }
+                iframe {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100vw;
+                    height: 100vh;
+                    border: none;
+                    background: #000;
+                    display: block;
+                }
+            </style>
+        </head>
+        <body>
+            <iframe src="${currentGameURL}" allowfullscreen></iframe>
+        </body>
+        </html>
+    `);
+
+    win.document.close();
     closePopup();
 }
 
 function openInNewWindow_AB() {
-    const win = window.open("", "", "width=1100,height=700,resizable=yes,scrollbars=yes");
+    const win = window.open("", "", "width=1100,height=700,resizable=yes");
+
     win.document.write(`
-        <style>body{margin:0;background:#000;}iframe{border:0;width:100vw;height:100vh;}</style>
-        <iframe src="${currentGameURL}"></iframe>
+        <html>
+        <head>
+            <style>
+                html, body {
+                    margin: 0;
+                    padding: 0;
+                    width: 100%;
+                    height: 100%;
+                    overflow: hidden;
+                    background: #000;
+                }
+                iframe {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100vw;
+                    height: 100vh;
+                    border: none;
+                    background: #000;
+                    display: block;
+                }
+            </style>
+        </head>
+        <body>
+            <iframe src="${currentGameURL}" allowfullscreen></iframe>
+        </body>
+        </html>
     `);
+
+    win.document.close();
     closePopup();
 }
 
@@ -306,7 +361,7 @@ function openInNewTab_NoAB() {
 }
 
 function openInNewWindow_NoAB() {
-    window.open(currentGameURL, "", "width=1100,height=700,resizable=yes,scrollbars=yes");
+    window.open(currentGameURL, "", "width=1100,height=700,resizable=yes");
     closePopup();
 }
 </script>
